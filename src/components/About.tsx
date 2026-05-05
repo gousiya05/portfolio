@@ -21,7 +21,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-24 px-6 md:px-12 relative">
+    <section id="about" className="py-32 px-6 md:px-12 relative">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
           <motion.div
@@ -30,8 +30,8 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-7xl font-black mb-8 tracking-tighter uppercase text-foreground font-display leading-[0.9]">
-              Architecting <br /> <span className="text-brand italic text-glow">Intelligence</span>
+            <h2 className="section-heading">
+              Architecting <br /> <span className="accent">Intelligence</span>
             </h2>
             <p className="text-lg text-muted mb-16 font-light leading-relaxed max-w-2xl mx-auto">
               I am a neural systems researcher and developer, driven by the challenge of creating autonomous frameworks that bridge the gap between abstract mathematical models and real-world impact.
@@ -46,7 +46,7 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="flex flex-col items-center gap-6 p-8 rounded-3xl glass hover:border-brand/30 transition-all border border-white/5"
+                className="card-glass flex flex-col items-center gap-6 p-8"
               >
                 <div className="w-16 h-16 shrink-0 rounded-2xl bg-neutral-900 flex items-center justify-center text-brand border border-neutral-800 neon-glow">
                   {item.icon}

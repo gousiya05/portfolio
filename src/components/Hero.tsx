@@ -54,33 +54,27 @@ export default function Hero() {
                 Engineering the next generation of <span className="text-foreground font-medium">intelligent systems</span> through a fusion of advanced machine learning and high-performance computing.
               </p>
 
-              <div className="flex flex-wrap items-center justify-center gap-8">
-                <a 
-                  href="#projects" 
-                  className="group relative px-10 py-5 bg-white text-black font-black rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95"
-                >
-                  <div className="absolute inset-0 bg-brand translate-y-full group-hover:translate-y-0 transition-transform duration-500 rounded-full" />
-                  <span className="relative flex items-center gap-2 group-hover:text-white transition-colors duration-500">
-                    VIEW ARCHIVE <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
-                  </span>
+              <div className="flex flex-wrap items-center justify-center gap-6">
+                <a href="#projects" className="btn-primary">
+                  View Archive <ArrowRight size={18} />
                 </a>
                 
-                <div className="flex gap-6">
+                <div className="flex gap-4">
                   <a 
                     href="https://github.com/gousiya05" 
                     target="_blank" 
                     rel="noreferrer"
-                    className="w-14 h-14 flex items-center justify-center bg-foreground/5 border border-foreground/10 rounded-full text-muted hover:text-brand hover:border-brand/50 transition-all"
+                    className="btn-icon"
                   >
-                    <Github size={24} />
+                    <Github size={22} />
                   </a>
                   <a 
                     href="https://www.linkedin.com/in/dudekula-gousiya-4aa815325" 
                     target="_blank" 
                     rel="noreferrer"
-                    className="w-14 h-14 flex items-center justify-center bg-foreground/5 border border-foreground/10 rounded-full text-muted hover:text-brand hover:border-brand/50 transition-all"
+                    className="btn-icon"
                   >
-                    <Linkedin size={24} />
+                    <Linkedin size={22} />
                   </a>
                 </div>
               </div>

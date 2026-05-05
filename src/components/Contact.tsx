@@ -3,15 +3,15 @@ import { Mail, MessageSquare, ArrowUpRight } from 'lucide-react';
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 px-6">
-      <div className="max-w-7xl mx-auto glass rounded-[32px] p-8 md:p-16 relative overflow-hidden">
+    <section id="contact" className="py-32 px-6">
+      <div className="max-w-7xl mx-auto card-glass p-8 md:p-16 relative overflow-hidden">
         {/* Background glow */}
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-brand/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
 
         <div className="grid lg:grid-cols-2 gap-16 relative z-10">
           <div>
-            <h2 className="text-4xl md:text-8xl font-black mb-12 tracking-tighter uppercase text-foreground font-display leading-[0.9]">
-              Establish <br /> <span className="text-brand italic text-glow">Connection</span>
+            <h2 className="section-heading !text-4xl md:!text-8xl !mb-12 !leading-[0.9]">
+              Establish <br /> <span className="accent">Connection</span>
             </h2>
             <div className="space-y-12">
               <div className="flex items-center gap-6">
@@ -92,7 +92,7 @@ export default function Contact() {
             <motion.button 
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full py-5 bg-white text-black font-black text-sm uppercase tracking-[0.2em] rounded-2xl shadow-xl hover:bg-neutral-200 transition-all"
+              className="btn-primary w-full !py-5 !text-sm"
             >
               Send Inquiry
             </motion.button>

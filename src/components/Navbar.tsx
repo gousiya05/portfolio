@@ -77,7 +77,7 @@ export default function Navbar() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4 }}
-            className="px-6 py-2.5 bg-white text-black text-[10px] font-bold uppercase tracking-widest rounded-lg hover:bg-brand hover:text-white transition-all font-display border border-transparent shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-brand/40"
+            className="btn-primary !px-6 !py-2.5 !text-[10px] !rounded-lg"
           >
             Terminal
           </motion.a>

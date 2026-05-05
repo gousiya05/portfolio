@@ -13,18 +13,20 @@ const projects = [
     title: 'PLATE MATE',
     category: 'AI / SUSTAINABILITY',
     image: 'https://images.unsplash.com/photo-1547514701-42782101795e?auto=format&fit=crop&q=80&w=800&h=600',
-    description: 'Designed an AI-based system to convert leftover ingredients into recipes, reducing food waste. Built features like recipe search, filtering, AI-generated instructions, and user recipe sharing. Integrated modules such as Leftover Challenge, Scan & Cook, and bookmarking with a responsive UI.',
+    description: 'AI-based system to convert leftover ingredients into recipes, reducing food waste. Features recipe search, filtering, AI-generated instructions, and user recipe sharing.',
     tags: ['React', 'AI', 'Node.js', 'PostgreSQL'],
-    link: 'https://github.com/gousiya05/platemate',
+    demo: 'https://github.com/gousiya05/platemate',
+    github: 'https://github.com/gousiya05/platemate',
   },
   {
     id: 2,
-    title: 'AI TRAVELL PLANNER',
+    title: 'AI TRAVEL PLANNER',
     category: 'WEB APP / UI',
     image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=800&h=600',
-    description: 'Developed a responsive AI-powered travel planning web application that enables users to search destinations, explore popular locations, and book accommodations. Integrated smart filtering (price, property type, amenities) and categorized services like flights, hotels, and tours to enhance user experience. Designed an intuitive UI with dynamic recommendations to simplify trip planning and improve engagement.',
+    description: 'AI-powered travel planning web app with smart filtering, dynamic recommendations, and booking for flights, hotels, and tours.',
     tags: ['React', 'Tailwind', 'AI Integration', 'UX Design'],
-    link: 'https://github.com/gousiya05',
+    demo: 'https://github.com/gousiya05',
+    github: 'https://github.com/gousiya05',
   },
 ];
 
@@ -60,24 +62,25 @@ export default function Projects() {
   }, [filteredProjects]);
 
   return (
-    <section ref={sectionRef} id="projects" className="py-24 px-6 bg-neutral-900/30">
+    <section ref={sectionRef} id="projects" className="py-32 px-6">
       <div className="max-w-7xl mx-auto">
+        {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div>
-            <h2 className="text-4xl md:text-7xl font-black mb-6 tracking-tighter uppercase text-white font-display"> 
-              Neural <br /> <span className="text-brand italic text-glow">Archives</span> 
+            <h2 className="section-heading"> 
+              Neural <br /> <span className="accent">Archives</span> 
             </h2>
-            <p className="text-neutral-400 max-w-sm font-light">
+            <p className="section-sub">
               High-precision machine learning frameworks and intelligent interface prototypes.
             </p>
           </div>
           <div className="flex flex-col items-end gap-6">
             <a href="https://github.com/gousiya05" target="_blank" rel="noreferrer" className="text-sm font-bold text-brand hover:underline underline-offset-8">Explore Archive (10+)</a>
             
-            {/* Filter UI */}
+            {/* Filter */}
             <div className="flex flex-wrap gap-2 justify-end">
               <div className="flex items-center gap-2 mr-4 text-neutral-500 font-mono text-[10px] uppercase tracking-widest">
-                <Filter size={12} /> Filter Architecture:
+                <Filter size={12} /> Filter:
               </div>
               {categories.map((cat) => (
                 <button
@@ -96,12 +99,13 @@ export default function Projects() {
           </div>
         </div>
 
+        {/* Project Cards Grid */}
         <motion.div 
           layout
-          className="grid md:grid-cols-2 gap-8 lg:gap-16"
+          className="grid md:grid-cols-2 gap-10"
         >
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, i) => (
+            {filteredProjects.map((project) => (
               <motion.div
                 layout
                 key={project.id}
@@ -109,50 +113,47 @@ export default function Projects() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4 }}
-                className="group relative project-card"
+                className="group project-card flex flex-col"
               >
                 <Tilt>
-                  {/* Floating Hologram Glow */}
-                  <div className="absolute -inset-4 bg-brand/5 rounded-[3rem] blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  {/* Hover glow */}
+                  <div className="absolute -inset-4 bg-brand/5 rounded-[3rem] blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                   
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-3xl bg-neutral-900 border border-neutral-800/50 mb-8 transition-all duration-500 group-hover:shadow-[0_0_50px_rgba(14,165,233,0.15)] group-hover:border-brand/30">
+                  {/* Image */}
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-t-3xl bg-neutral-900 border border-neutral-800/50 border-b-0 transition-all duration-500 group-hover:shadow-[0_0_50px_rgba(14,165,233,0.15)] group-hover:border-brand/30">
                     <img
                       src={project.image}
                       alt={project.title}
                       className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 ease-out"
                       referrerPolicy="no-referrer"
                     />
-                    
-                    {/* AI Scanline Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand/20 to-transparent h-[15%] w-full -translate-y-full group-hover:animate-scanline pointer-events-none z-10" />
-                    
                     <div className="absolute inset-0 bg-neutral-950/40 group-hover:bg-transparent transition-all duration-500" />
                     
-                    <div className="absolute top-8 left-8 flex gap-2 z-20">
+                    {/* Tags on image */}
+                    <div className="absolute top-6 left-6 flex flex-wrap gap-2 z-20">
                       {project.tags.map(tag => (
-                        <span key={tag} className="px-4 py-1.5 bg-black/40 backdrop-blur-xl rounded-full text-[10px] font-bold uppercase tracking-widest text-white border border-white/10 group-hover:border-brand/40 transition-colors">
+                        <span key={tag} className="px-3 py-1 bg-black/50 backdrop-blur-xl rounded-full text-[10px] font-bold uppercase tracking-widest text-white border border-white/10 group-hover:border-brand/40 transition-colors">
                           {tag}
                         </span>
                       ))}
                     </div>
-
-                    <div className="absolute inset-x-0 bottom-0 p-8 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out bg-gradient-to-t from-black/80 to-transparent backdrop-blur-sm z-20">
-                      <div className="flex gap-4">
-                        <a href={project.link} target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-2 py-3 bg-white text-black rounded-xl font-bold text-sm hover:bg-brand hover:text-white transition-all">
-                          <ExternalLink size={16} /> Live Demo
-                        </a>
-                        <a href={project.link} target="_blank" rel="noreferrer" className="w-12 h-12 flex items-center justify-center bg-neutral-800 text-white rounded-xl hover:bg-neutral-700 transition-colors border border-white/10">
-                          <Github size={20} />
-                        </a>
-                      </div>
-                    </div>
                   </div>
 
-                  <div className="glass p-10 rounded-[2.5rem] group-hover:border-brand/30 transition-all duration-500 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-brand/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
-                    <p className="text-[10px] font-black text-brand uppercase tracking-[0.4em] mb-4 font-display neon-glow">{project.category}</p>
-                    <h3 className="text-4xl font-black mb-5 tracking-tighter text-white group-hover:translate-x-2 transition-transform duration-500 font-display uppercase">{project.title}</h3>
-                    <p className="text-neutral-400 font-light leading-relaxed mb-0 text-lg">{project.description}</p>
+                  {/* Card body */}
+                  <div className="card-glass rounded-t-none rounded-b-3xl p-8 flex flex-col flex-1">
+                    <p className="text-[10px] font-black text-brand uppercase tracking-[0.4em] mb-3 font-display">{project.category}</p>
+                    <h3 className="text-3xl font-black mb-4 tracking-tighter text-white group-hover:translate-x-1 transition-transform duration-500 font-display uppercase">{project.title}</h3>
+                    <p className="text-neutral-400 font-light leading-relaxed mb-8 flex-1">{project.description}</p>
+                    
+                    {/* Buttons — always visible, consistent */}
+                    <div className="flex gap-4">
+                      <a href={project.demo} target="_blank" rel="noreferrer" className="btn-primary flex-1">
+                        <ExternalLink size={16} /> Live Demo
+                      </a>
+                      <a href={project.github} target="_blank" rel="noreferrer" className="btn-secondary flex-1">
+                        <Github size={16} /> View Code
+                      </a>
+                    </div>
                   </div>
                 </Tilt>
               </motion.div>

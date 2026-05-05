@@ -60,6 +60,73 @@ html {
   .animate-scanline {
     animation: scanline 2s linear infinite;
   }
+
+  /* ── Standardized Buttons ── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           px-8 py-3.5
+           bg-white text-black
+           text-xs font-black uppercase tracking-[0.15em]
+           rounded-xl
+           transition-all duration-300;
+  }
+  .btn-primary:hover {
+    @apply bg-brand text-white scale-105;
+    box-shadow: 0 0 24px rgba(14, 165, 233, 0.35);
+  }
+  .btn-primary:active {
+    @apply scale-95;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2
+           px-8 py-3.5
+           bg-white/5 text-neutral-300
+           text-xs font-black uppercase tracking-[0.15em]
+           rounded-xl border border-white/10
+           transition-all duration-300;
+  }
+  .btn-secondary:hover {
+    @apply bg-white/10 text-white border-brand/40 scale-105;
+    box-shadow: 0 0 24px rgba(14, 165, 233, 0.15);
+  }
+  .btn-secondary:active {
+    @apply scale-95;
+  }
+
+  .btn-icon {
+    @apply inline-flex items-center justify-center
+           w-12 h-12
+           bg-white/5 text-neutral-300
+           rounded-xl border border-white/10
+           transition-all duration-300;
+  }
+  .btn-icon:hover {
+    @apply text-brand border-brand/40 scale-110;
+    box-shadow: 0 0 20px rgba(14, 165, 233, 0.2);
+  }
+
+  /* ── Card Glass ── */
+  .card-glass {
+    @apply bg-background/40 backdrop-blur-xl rounded-3xl border border-white/5
+           transition-all duration-500;
+  }
+  .card-glass:hover {
+    @apply border-brand/30;
+    box-shadow: 0 0 40px rgba(14, 165, 233, 0.08);
+  }
+
+  /* ── Section Headings ── */
+  .section-heading {
+    @apply text-4xl md:text-7xl font-black tracking-tighter uppercase text-foreground font-display leading-[0.95] mb-6;
+  }
+  .section-heading .accent {
+    @apply text-brand italic;
+    text-shadow: 0 0 15px rgba(14, 165, 233, 0.6);
+  }
+  .section-sub {
+    @apply text-muted font-light max-w-md mb-16;
+  }
 }
 
 /* Custom Scrollbar */

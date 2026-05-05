@@ -28,14 +28,14 @@ const skillCategories = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 px-6 relative overflow-hidden">
+    <section id="skills" className="py-32 px-6 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-px h-full bg-neutral-900 hidden lg:block" />
       <div className="max-w-7xl mx-auto">
-        <div className="mb-24">
-          <h2 className="text-4xl md:text-7xl font-black mb-6 tracking-tighter uppercase text-foreground font-display"> 
-            System <br /> <span className="text-brand italic text-glow">Capabilities</span> 
+        <div className="mb-20">
+          <h2 className="section-heading"> 
+            System <br /> <span className="accent">Capabilities</span> 
           </h2>
-          <p className="text-muted max-w-sm font-light">An exhaustive overview of core technical competencies across the AI and neural framework domains.</p>
+          <p className="section-sub">An exhaustive overview of core technical competencies across the AI and neural framework domains.</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-12">

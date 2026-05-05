@@ -27,11 +27,11 @@ const achievements = [
 
 export default function Achievements() {
   return (
-    <section id="achievements" className="py-24 px-6 md:px-12 relative overflow-hidden">
+    <section id="achievements" className="py-32 px-6 md:px-12 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-24">
-          <h2 className="text-4xl md:text-7xl font-black mb-6 tracking-tighter uppercase text-foreground font-display"> 
-            Operational <br /> <span className="text-brand italic text-glow">Benchmarks</span> 
+        <div className="text-center mb-20">
+          <h2 className="section-heading"> 
+            Operational <br /> <span className="accent">Benchmarks</span> 
           </h2>
           <p className="text-muted max-w-lg mx-auto font-light text-lg">
             A linear progression of technical certifications and competitive milestones.
@@ -54,7 +54,7 @@ export default function Achievements() {
                 <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-brand neon-glow z-10" />
                 
                 <div className="flex-1 w-full">
-                  <div className={`glass p-8 rounded-3xl border border-white/5 hover:border-brand/30 transition-all duration-500 group ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>
+                  <div className={`card-glass p-8 group ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>
                     <div className={`mb-6 w-16 h-16 rounded-2xl bg-neutral-900 border border-neutral-800 flex items-center justify-center group-hover:scale-110 transition-transform shadow-inner ${index % 2 === 0 ? 'ml-auto' : ''}`}>
                       {achievement.icon}
                     </div>
