@@ -13,6 +13,18 @@ View your app in AI Studio: https://ai.studio/apps/19a25747-f90f-479d-bbc3-03ac6
 **Prerequisites:**  Node.js
 
 
+## Deployment
+
+### Deploy to Vercel
+
+1.  Push your changes to your GitHub repository.
+2.  Connect your repository to [Vercel](https://vercel.com).
+3.  In the Vercel project settings, add the following environment variable:
+    -   `GEMINI_API_KEY`: Your Google Gemini API key.
+4.  Vercel will automatically detect the Vite framework and deploy your app.
+
+---
+
 1. Install dependencies:
    `npm install`
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
