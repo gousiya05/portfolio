@@ -14,6 +14,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
 import CyberDataBackground from './components/CyberDataBackground';
+import MultiverseBackground from './components/MultiverseBackground';
 import AnimationSettings from './components/AnimationSettings';
 import SmoothScroll from './components/SmoothScroll';
 import Preloader from './components/Preloader';
@@ -28,6 +29,7 @@ export default function App() {
         <div id="app-root" className="min-h-screen bg-background text-foreground transition-colors duration-500 selection:bg-brand/30 selection:text-white">
           <CustomCursor />
           <CyberDataBackground />
+          <MultiverseBackground />
           <AnimationSettings />
           
           <Navbar />
