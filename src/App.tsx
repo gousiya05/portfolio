@@ -25,7 +25,7 @@ export default function App() {
     <ThemeProvider>
       <Preloader />
       <SmoothScroll>
-        <div id="app-root" className="min-h-screen bg-background text-foreground transition-colors duration-500 selection:bg-brand/30 selection:text-white">
+        <div id="app-root" className="min-h-screen bg-transparent text-foreground transition-colors duration-500 selection:bg-brand/30 selection:text-white">
           <CustomCursor />
           <MultiverseBackground />
           <AnimationSettings />
