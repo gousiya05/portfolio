@@ -4,11 +4,22 @@ import { motion, useSpring } from 'motion/react';
 export default function CustomCursor() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   const cursorX = useSpring(0, { damping: 40, stiffness: 1000 });
   const cursorY = useSpring(0, { damping: 40, stiffness: 1000 });
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsVisible(window.innerWidth >= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
     const handleMouseMove = (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
@@ -32,6 +43,8 @@ export default function CustomCursor() {
       window.removeEventListener('mouseover', handleMouseOver);
     };
   }, [cursorX, cursorY]);
+
+  if (!isVisible) return null;
 
   return (
     <>

@@ -27,7 +27,7 @@ const achievements = [
 
 export default function Achievements() {
   return (
-    <section id="achievements" className="py-32 px-6 md:px-12 relative overflow-hidden">
+    <section id="achievements" className="py-20 md:py-32 px-6 md:px-12 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
           <h2 className="section-heading"> 
@@ -46,16 +46,16 @@ export default function Achievements() {
             {achievements.map((achievement, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 className={`flex flex-col md:flex-row items-center gap-8 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
               >
                 <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-brand neon-glow z-10" />
                 
                 <div className="flex-1 w-full">
-                  <div className={`card-glass p-8 group ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>
-                    <div className={`mb-6 w-16 h-16 rounded-2xl bg-neutral-900 border border-neutral-800 flex items-center justify-center group-hover:scale-110 transition-transform shadow-inner ${index % 2 === 0 ? 'ml-auto' : ''}`}>
+                  <div className={`card-glass p-6 md:p-8 group ${index % 2 === 0 ? 'md:text-right' : 'text-left'} text-center md:text-left`}>
+                    <div className={`mb-6 w-16 h-16 rounded-2xl bg-neutral-900 border border-neutral-800 flex items-center justify-center group-hover:scale-110 transition-transform shadow-inner mx-auto ${index % 2 === 0 ? 'md:ml-auto md:mr-0' : 'md:ml-0'}`}>
                       {achievement.icon}
                     </div>
                     

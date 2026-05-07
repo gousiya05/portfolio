@@ -21,7 +21,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-32 px-6 md:px-12 relative">
+    <section id="about" className="py-20 md:py-32 px-6 md:px-12 relative">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
           <motion.div

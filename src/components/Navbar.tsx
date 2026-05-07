@@ -32,7 +32,7 @@ export default function Navbar() {
     <nav
       id="main-nav"
       className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-        scrolled ? 'py-4 bg-black/60 backdrop-blur-xl border-b border-brand/20' : 'py-8 bg-transparent'
+        scrolled ? 'py-4 bg-black/60 backdrop-blur-xl border-b border-brand/20' : 'py-4 md:py-8 bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center">
@@ -41,7 +41,7 @@ export default function Navbar() {
           onClick={() => setMobileMenuOpen(false)}
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="text-2xl font-black tracking-tighter text-white flex items-center gap-3 font-display group"
+          className="text-xl md:text-2xl font-black tracking-tighter text-white flex items-center gap-3 font-display group"
         >
           <div className="w-10 h-10 rounded-lg bg-brand flex items-center justify-center neon-glow group-hover:scale-110 transition-transform">
             <Cpu size={24} className="text-black" />

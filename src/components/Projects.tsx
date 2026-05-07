@@ -62,7 +62,7 @@ export default function Projects() {
   }, [filteredProjects]);
 
   return (
-    <section ref={sectionRef} id="projects" className="py-32 px-6">
+    <section ref={sectionRef} id="projects" className="py-20 md:py-32 px-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
@@ -140,7 +140,7 @@ export default function Projects() {
                   </div>
 
                   {/* Card body */}
-                  <div className="card-glass rounded-t-none rounded-b-3xl p-8 flex flex-col flex-1">
+                  <div className="card-glass rounded-t-none rounded-b-3xl p-6 md:p-8 flex flex-col flex-1">
                     <p className="text-[10px] font-black text-brand uppercase tracking-[0.4em] mb-3 font-display">{project.category}</p>
                     <h3 className="text-3xl font-black mb-4 tracking-tighter text-white group-hover:translate-x-1 transition-transform duration-500 font-display uppercase">{project.title}</h3>
                     <p className="text-neutral-400 font-light leading-relaxed mb-8 flex-1">{project.description}</p>

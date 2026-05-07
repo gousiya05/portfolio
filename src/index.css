@@ -27,7 +27,7 @@ html {
 
 @layer base {
   body {
-    @apply bg-transparent text-neutral-200 font-sans antialiased cursor-none overflow-x-hidden;
+    @apply bg-transparent text-neutral-200 font-sans antialiased md:cursor-none overflow-x-hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -118,14 +118,14 @@ html {
 
   /* ── Section Headings ── */
   .section-heading {
-    @apply text-4xl md:text-7xl font-black tracking-tighter uppercase text-foreground font-display leading-[0.95] mb-6;
+    @apply text-3xl md:text-7xl font-black tracking-tighter uppercase text-foreground font-display leading-[0.95] mb-6;
   }
   .section-heading .accent {
     @apply text-brand italic;
     text-shadow: 0 0 15px rgba(14, 165, 233, 0.6);
   }
   .section-sub {
-    @apply text-muted font-light max-w-md mb-16;
+    @apply text-muted font-light max-w-md mb-8 md:mb-16;
   }
 }
 
