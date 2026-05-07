@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Mail, ArrowUpRight, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 
@@ -27,7 +27,7 @@ export default function Contact() {
     setStatus('loading');
 
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ export default function Contact() {
           {/* Left Side: Contact Details */}
           <div className="lg:w-1/2 flex flex-col justify-between">
             <div>
-              <h2 className="font-black text-foreground uppercase tracking-[-2px] leading-[0.9] mb-8 md:mb-12 font-display text-[clamp(3rem,9vw,9rem)]">
+              <h2 className="font-black text-foreground uppercase tracking-[-2px] leading-[0.9] mb-8 md:mb-12 font-display text-[clamp(2.5rem,5vw,6rem)] break-words">
                 Establish <br /> <span className="accent">Connection</span>
               </h2>
               

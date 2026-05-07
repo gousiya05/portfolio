@@ -5,6 +5,8 @@ interface Particle {
   y: number;
   vx: number;
   vy: number;
+  baseVx: number;
+  baseVy: number;
   radius: number;
   color: string;
   alpha: number;
@@ -70,37 +72,42 @@ export default function MultiverseBackground() {
     // Build particles across 3 parallax layers
     const initParticles = () => {
       particlesRef.current = [];
-      const count = Math.min(Math.floor((width * height) / 8000), 180);
+      const count = Math.min(Math.floor((width * height) / 4000), 250); // Increased density
       for (let i = 0; i < count; i++) {
         const layer = Math.ceil(Math.random() * 3);
-        const speed = 0.08 / layer;
+        const speed = (0.5 / layer) + Math.random() * 0.8; // Increased base speed
+        const baseVx = (Math.random() - 0.5) * speed;
+        const baseVy = (Math.random() - 0.5) * speed;
+        
         particlesRef.current.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          vx: (Math.random() - 0.5) * speed,
-          vy: (Math.random() - 0.5) * speed,
-          radius: (Math.random() * 1.8 + 0.4) / layer,
+          vx: baseVx,
+          vy: baseVy,
+          baseVx,
+          baseVy,
+          radius: (Math.random() * 2.5 + 0.5) / layer, // Slightly larger
           color: NEON_COLORS[Math.floor(Math.random() * NEON_COLORS.length)],
-          alpha: Math.random() * 0.6 + 0.2,
+          alpha: Math.random() * 0.7 + 0.3, // Brighter
           layer,
           twinkle: Math.random() * Math.PI * 2,
-          twinkleSpeed: 0.02 + Math.random() * 0.04,
+          twinkleSpeed: 0.05 + Math.random() * 0.08, // Faster twinkle
         });
       }
     };
 
     const initNebulas = () => {
       nebulasRef.current = [];
-      const count = 6;
+      const count = 8; // More nebulas
       for (let i = 0; i < count; i++) {
         nebulasRef.current.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          radius: 200 + Math.random() * 350,
+          radius: 200 + Math.random() * 450,
           color: NEON_COLORS[Math.floor(Math.random() * NEON_COLORS.length)],
-          alpha: 0.02 + Math.random() * 0.04,
-          vx: (Math.random() - 0.5) * 0.05,
-          vy: (Math.random() - 0.5) * 0.05,
+          alpha: 0.03 + Math.random() * 0.05, // Slightly more visible
+          vx: (Math.random() - 0.5) * 0.3, // Faster nebulas
+          vy: (Math.random() - 0.5) * 0.3,
         });
       }
     };
@@ -115,20 +122,20 @@ export default function MultiverseBackground() {
       const dist = Math.sqrt(dx * dx + dy * dy);
 
       // Only spawn ripple when mouse moves fast enough
-      if (dist > 20) {
+      if (dist > 15) {
         ripplesRef.current.push({
           x: e.clientX,
           y: e.clientY,
           radius: 0,
-          maxRadius: 120 + Math.random() * 80,
-          alpha: 0.5,
+          maxRadius: 150 + Math.random() * 100, // Bigger ripples
+          alpha: 0.6,
         });
         // cap ripples
-        if (ripplesRef.current.length > 12) ripplesRef.current.shift();
+        if (ripplesRef.current.length > 15) ripplesRef.current.shift();
       }
 
       trailRef.current.push({ x: e.clientX, y: e.clientY, alpha: 0.8 });
-      if (trailRef.current.length > 30) trailRef.current.shift();
+      if (trailRef.current.length > 40) trailRef.current.shift();
 
       lastMouseRef.current = mouseRef.current;
       mouseRef.current = { x: e.clientX, y: e.clientY };
@@ -159,11 +166,11 @@ export default function MultiverseBackground() {
 
     const drawParticles = () => {
       const mouse = mouseRef.current;
-      const INFLUENCE_RADIUS = 160;
+      const INFLUENCE_RADIUS = 200; // Larger mouse influence
 
       for (const p of particlesRef.current) {
         // Parallax offset based on layer
-        const parallaxFactor = (4 - p.layer) * 0.012;
+        const parallaxFactor = (4 - p.layer) * 0.015;
         const offsetX = (mouse.x - width / 2) * parallaxFactor;
         const offsetY = (mouse.y - height / 2) * parallaxFactor;
 
@@ -175,13 +182,15 @@ export default function MultiverseBackground() {
         if (dist < INFLUENCE_RADIUS && mouse.x > 0) {
           const force = (INFLUENCE_RADIUS - dist) / INFLUENCE_RADIUS;
           const angle = Math.atan2(dy, dx);
-          p.vx += Math.cos(angle) * force * 0.12;
-          p.vy += Math.sin(angle) * force * 0.12;
+          // Increased repulsion force
+          p.vx += Math.cos(angle) * force * 0.8;
+          p.vy += Math.sin(angle) * force * 0.8;
         }
 
-        // Damping + move
-        p.vx *= 0.96;
-        p.vy *= 0.96;
+        // Return to base velocity gradually (adds dynamic elasticity)
+        p.vx += (p.baseVx - p.vx) * 0.08;
+        p.vy += (p.baseVy - p.vy) * 0.08;
+        
         p.x += p.vx;
         p.y += p.vy;
 
@@ -217,7 +226,7 @@ export default function MultiverseBackground() {
     };
 
     const drawConnections = () => {
-      const MAX_DIST = 100;
+      const MAX_DIST = 120; // Longer connection range
       const ps = particlesRef.current;
       for (let i = 0; i < ps.length; i++) {
         for (let j = i + 1; j < ps.length; j++) {
@@ -226,9 +235,9 @@ export default function MultiverseBackground() {
           const dy = ps[i].y - ps[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < MAX_DIST) {
-            const alpha = (1 - dist / MAX_DIST) * 0.12;
+            const alpha = (1 - dist / MAX_DIST) * 0.15; // Brighter lines
             ctx.strokeStyle = hexAlpha(ps[i].color, alpha);
-            ctx.lineWidth = 0.5;
+            ctx.lineWidth = 0.8;
             ctx.beginPath();
             ctx.moveTo(ps[i].x, ps[i].y);
             ctx.lineTo(ps[j].x, ps[j].y);
@@ -266,47 +275,47 @@ export default function MultiverseBackground() {
       const { x, y } = mouseRef.current;
       if (x < 0) return;
 
-      const grad = ctx.createRadialGradient(x, y, 0, x, y, 80);
-      grad.addColorStop(0, hexAlpha('#0ea5e9', 0.18));
-      grad.addColorStop(0.5, hexAlpha('#a855f7', 0.08));
+      const grad = ctx.createRadialGradient(x, y, 0, x, y, 100);
+      grad.addColorStop(0, hexAlpha('#0ea5e9', 0.22));
+      grad.addColorStop(0.5, hexAlpha('#a855f7', 0.1));
       grad.addColorStop(1, 'transparent');
       ctx.fillStyle = grad;
       ctx.beginPath();
-      ctx.arc(x, y, 80, 0, Math.PI * 2);
+      ctx.arc(x, y, 100, 0, Math.PI * 2);
       ctx.fill();
     };
 
     const drawRipples = () => {
       ripplesRef.current = ripplesRef.current.filter(r => r.alpha > 0.01);
       for (const r of ripplesRef.current) {
-        r.radius += 2.5;
-        r.alpha *= 0.94;
+        r.radius += 3.5; // Faster ripples
+        r.alpha *= 0.92;
 
         const colorIdx = Math.floor((r.x / width) * NEON_COLORS.length) % NEON_COLORS.length;
         ctx.strokeStyle = hexAlpha(NEON_COLORS[colorIdx], r.alpha);
-        ctx.lineWidth = 1;
+        ctx.lineWidth = 1.5;
         ctx.beginPath();
         ctx.arc(r.x, r.y, r.radius, 0, Math.PI * 2);
         ctx.stroke();
 
         // Inner slightly brighter ring
-        if (r.radius > 10) {
-          ctx.strokeStyle = hexAlpha(NEON_COLORS[colorIdx], r.alpha * 0.4);
+        if (r.radius > 15) {
+          ctx.strokeStyle = hexAlpha(NEON_COLORS[colorIdx], r.alpha * 0.5);
           ctx.beginPath();
-          ctx.arc(r.x, r.y, r.radius * 0.6, 0, Math.PI * 2);
+          ctx.arc(r.x, r.y, r.radius * 0.7, 0, Math.PI * 2);
           ctx.stroke();
         }
       }
     };
 
     const drawScanLine = (t: number) => {
-      const y = ((t * 0.2) % height);
-      const grad = ctx.createLinearGradient(0, y - 20, 0, y + 20);
+      const y = ((t * 0.4) % height); // Faster scanline
+      const grad = ctx.createLinearGradient(0, y - 30, 0, y + 30);
       grad.addColorStop(0, 'transparent');
-      grad.addColorStop(0.5, 'rgba(14,165,233,0.025)');
+      grad.addColorStop(0.5, 'rgba(14,165,233,0.04)');
       grad.addColorStop(1, 'transparent');
       ctx.fillStyle = grad;
-      ctx.fillRect(0, y - 20, width, 40);
+      ctx.fillRect(0, y - 30, width, 60);
     };
 
     let lastTime = 0;

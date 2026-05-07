@@ -1,25 +1,10 @@
-import express from 'express';
-import cors from 'cors';
 import nodemailer from 'nodemailer';
-import dotenv from 'dotenv';
 
-dotenv.config();
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
 
-const app = express();
-const PORT = process.env.PORT || 5000;
-
-app.use(cors());
-app.use(express.json());
-
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
-
-app.post('/api/contact', async (req, res) => {
   const { name, email, projectType, message } = req.body;
 
   if (!name || !email || !message) {
@@ -27,6 +12,14 @@ app.post('/api/contact', async (req, res) => {
   }
 
   try {
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: 'gdudkela3@gmail.com',
@@ -48,10 +41,6 @@ app.post('/api/contact', async (req, res) => {
     res.status(200).json({ success: true, message: 'Transmission Sent Successfully' });
   } catch (error) {
     console.error('Error sending email:', error);
-    res.status(500).json({ error: 'Failed to send message. Please try again later.' });
+    res.status(500).json({ error: 'Failed to send message.' });
   }
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+}
