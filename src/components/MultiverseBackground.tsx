@@ -323,7 +323,6 @@ export default function MultiverseBackground() {
       drawNebulas();
       drawConnections();
       drawParticles();
-      drawCursorTrail();
       drawCursorGlow();
       drawRipples();
       drawScanLine(time);

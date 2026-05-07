@@ -15,7 +15,7 @@ const projects = [
     image: 'https://images.unsplash.com/photo-1547514701-42782101795e?auto=format&fit=crop&q=80&w=800&h=600',
     description: 'AI-based system to convert leftover ingredients into recipes, reducing food waste. Features recipe search, filtering, AI-generated instructions, and user recipe sharing.',
     tags: ['React', 'AI', 'Node.js', 'PostgreSQL'],
-    demo: 'https://github.com/gousiya05/platemate',
+    demo: 'https://platemate-ivory.vercel.app/',
     github: 'https://github.com/gousiya05/platemate',
   },
   {
@@ -25,8 +25,8 @@ const projects = [
     image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=800&h=600',
     description: 'AI-powered travel planning web app with smart filtering, dynamic recommendations, and booking for flights, hotels, and tours.',
     tags: ['React', 'Tailwind', 'AI Integration', 'UX Design'],
-    demo: 'https://github.com/gousiya05',
-    github: 'https://github.com/gousiya05',
+    demo: 'https://ai-travell-planner-ecru.vercel.app/',
+    github: 'https://github.com/gousiya05/AI-TRAVELL-PLANNER',
   },
 ];
 

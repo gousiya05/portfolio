@@ -5,8 +5,8 @@ export default function CustomCursor() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
 
-  const cursorX = useSpring(0, { damping: 20, stiffness: 250 });
-  const cursorY = useSpring(0, { damping: 20, stiffness: 250 });
+  const cursorX = useSpring(0, { damping: 40, stiffness: 1000 });
+  const cursorY = useSpring(0, { damping: 40, stiffness: 1000 });
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -36,13 +36,13 @@ export default function CustomCursor() {
   return (
     <>
       <motion.div
-        className="fixed top-0 left-0 w-12 h-12 border border-brand/30 rounded-full pointer-events-none z-[9999] flex items-center justify-center p-1"
+        className="fixed top-0 left-0 w-8 h-8 border border-brand/50 rounded-full pointer-events-none z-[9999] flex items-center justify-center p-1"
         style={{
           x: cursorX,
           y: cursorY,
           translateX: '-50%',
           translateY: '-50%',
-          scale: isHovering ? 1.8 : 1,
+          scale: isHovering ? 1.5 : 1,
         }}
       >
         <div className="w-full h-px bg-brand/20 absolute rotate-45" />
